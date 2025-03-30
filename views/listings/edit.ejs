@@ -1,0 +1,58 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row">
+        <div class="col-8 offset-2 mt-3">
+        
+    <h3>Edit The Entry</h3>
+
+    <form method="post" action="/listings/<%= partiList._id %>?_method=PUT" class="needs-validation" novalidate enctype="multipart/form-data">
+        <!-- Title -->
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" required name="listing[title]" class="form-control" id="title" value="<%= partiList.title %>">
+            <div class="invalid-feedback">Please enter the Title</div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="listing[description]" required id="description" cols="150" class="form-control" ><%= partiList.description %></textarea>
+            <div class="invalid-feedback">Please enter the Description</div>
+        </div>
+        
+        <!-- Image -->
+        <div class="mb-3">
+            <label for="image" class="form-label">Upload New Image</label>
+            <input type="file" name="listing[image]" id="image"  class="form-control">
+        </div>
+
+        <!-- Price -->
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label for="price" class="form-label" >Price</label>
+                <input type="number" required name="listing[price]" class="form-control" value="<%= partiList.price %>" id="price">
+                <div class="invalid-feedback">Please enter the Price</div>
+            </div>
+
+            <!-- Country  -->
+            <div class="mb-3 col-md-8">
+                <label for="country" class="form-label">Country</label>
+                <input required type="text" name="listing[country]" value="<%= partiList.country %>" id="country" class="form-control">
+                <div class="invalid-feedback">Please enter the Country</div>
+            </div>
+        </div>
+        
+        <!-- Location -->
+        <div class="mb-3">
+            <label for="location" class="form-label" >Location</label>
+            <input required type="text" class="form-control" name="listing[location]" value="<%= partiList.location %>" id="location">
+            <div class="invalid-feedback">Please enter the Location</div>
+        </div>
+        
+        
+        <button class="btn btn-dark edit-btn mt-3">Edit</button>
+    </form>
+</div>
+</div>
+<!-- <script src="/public/js/script.js" ></script> -->
+
