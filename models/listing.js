@@ -17,7 +17,7 @@ const listingSchema = new mongoose.Schema({
     review : [
         {
             type:mongoose.Schema.Types.ObjectId,
-            ref:"Review"
+            ref:"Review",
         }
     ],
     owner:{

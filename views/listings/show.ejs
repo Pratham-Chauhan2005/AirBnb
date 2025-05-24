@@ -1,13 +1,12 @@
 <% layout("/layouts/boilerplate") %>
 
-<script>
-  const mapToken="<%= process.env.MAP_TOKEN %>";
-  // console.log("mapToken = " ,mapToken);
+<!-- <script>
+ 
   const partiList = "<%- JSON.stringify(partiList) %>";
-  // console.log(listing);
-</script>
+  
+</script> -->
 
-<body>
+<!-- <body> -->
   <div class="row mt-3">
     <div class="col-8 offset-3">
       <h2><%= partiList.title %></h2>
@@ -155,15 +154,33 @@
     <% } %>
   </div>
 
-  <div class="col-6 offset-3 mb-3">
+  <div class="col-8 offset-3 mb-3">
     <h3>Where you'll be</h3>
-    <div id="map">
-
-    </div>
-    
+    <div id="map"></div>
   </div>
 </div>
-  <script src="/js/map.js"> </script>
+
+<script >
+   const mapToken="<%= process.env.MAP_TOKEN %>";
+   console.log(mapToken);
+   const Lister = <%- JSON.stringify(partiList) %>;
+  mapboxgl.accessToken = mapToken;
+// console.log("AccessToken Done");
+
+  const map = new mapboxgl.Map({
+            container : "map", // container ID
+            style : "mapbox://styles/mapbox/streets-v12",
+            center: Lister.geometry.coordinates, // starting position [lng, lat]. Note that lat must be set between -90 and 90
+            zoom: 9 ,// starting zoom
+});
+
+const marker = new mapboxgl.Marker({color:"red"})
+.setLngLat(Lister.geometry.coordinates)
+.setPopup(
+    new mapboxgl.Popup({offset : 25})
+)
+.addTo(map);
+</script>
 
 
 
